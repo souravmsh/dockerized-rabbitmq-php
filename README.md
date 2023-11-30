@@ -1,38 +1,16 @@
 # User Guide: Dockerized RabbitMQ Environment with PHP
 
 ## Table of Contents
-1. [Installation](#installation)
-    - [Install Docker](#install-docker)
-2. [Configuration](#configuration)
+1. [Configuration](#configuration)
     - [Edit Docker Compose File](#edit-docker-compose-file)
     - [Build Docker Image](#build-docker-image)
     - [Run Docker Containers](#run-docker-containers)
     - [Check Container Status](#check-container-status)
-3. [Configuration of RabbitmqService.php](#configuration-of-rabbitmqservicephp)
-4. [Publish a Message](#publish-a-message)
-5. [Consume a Message](#consume-a-message)
+2. [Configuration of RabbitmqService.php](#configuration-of-rabbitmqservicephp)
+3. [Publish a Message](#publish-a-message)
+4. [Consume a Message](#consume-a-message)
 
 ## 1. Installation
-
-### Install Docker
-
-Docker is required to set up the RabbitMQ environment. Follow these steps to install Docker:
-
-1. Edit `docker-compose.yml` to set the PHP version and other configurations.
-2. Build the Docker image with the command:
-    ```bash
-    docker-compose build
-    ```
-3. Run the Docker containers with the command:
-    ```bash
-    docker-compose up -d
-    ```
-4. Check the status of the running containers with the command:
-    ```bash
-    docker-compose ps
-    ```
-
-## 2. Configuration
 
 ### Edit Docker Compose File
 
@@ -58,7 +36,7 @@ Check the status of the running containers using the following command:
 docker-compose ps
 ```
 
-## 3. Configuration of RabbitmqService.php
+## 2. Configuration of RabbitmqService.php
 Run the following command to inspect the Docker container and copy the <b>IPAddress</b> from the output:
 ```bash
 docker inspect <container-name>
@@ -87,7 +65,7 @@ $config = [
 new RabbitmqService($config);
 ```
 
-## 4. Publish a Message
+## 3. Publish a Message
 Use the following PHP script to publish a message to <b>RabbitMQ</b>:
 
 ```php
@@ -97,7 +75,7 @@ $mq->queue("queue_name")
     ->publish("Hello World!");
 ```
 
-## 5. Consume a Message
+## 4. Consume a Message
 Use the following PHP script to consume messages from RabbitMQ:
 
 ```php
