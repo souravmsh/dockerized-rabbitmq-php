@@ -1,0 +1,37 @@
+version: '3.7'
+ 
+networks:
+  mqapp:
+    ipam:
+      driver: default 
+ 
+
+services:  
+
+  app:
+    container_name: 'mq-app'
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./www/:/var/www/html
+    ports:
+      - '8888:80' 
+    networks:
+      mqapp: 
+   
+
+  rabbitmq:
+    container_name: 'mq-rabbitmq'
+    build:
+      context: ./
+      dockerfile: docker/rabbitmq.docker
+    ports:
+      - "5673:5672" 
+      - "15672:15672" 
+      - "8889:8889" 
+    networks:
+      mqapp: 
+ 
+
+   

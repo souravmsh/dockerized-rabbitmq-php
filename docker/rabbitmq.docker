@@ -1,0 +1,34 @@
+FROM fedora:36
+LABEL maintainer="SSL Wireless"
+
+
+RUN dnf makecache
+RUN dnf install -y wget vim tmux util-linux
+RUN dnf install -y erlang socat logrotate
+
+RUN curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+
+RUN dnf install -y rabbitmq-server
+RUN rabbitmq-plugins enable rabbitmq_management
+
+RUN echo "CONFIG_FILE=/etc/rabbitmq/rabbitmq.conf" >> /etc/rabbitmq/rabbitmq-env.conf
+
+RUN echo "management.tcp.ip = 0.0.0.0" >> /etc/rabbitmq/rabbitmq.conf
+#RUN echo "management.tcp.port = 8305" >> /etc/rabbitmq/rabbitmq.conf
+
+# create user
+# rabbitmqctl add_user admin admin
+# rabbitmqctl set_user_tags admin administrator
+# rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+
+# data and log dirs
+# /var/lib/rabbitmq/mnesia
+# /var/log/rabbitmq
+
+# docker build -t rabbitmq-custom .
+# docker run -it -p 5672:5672 -p 15672:15672 -p 8305:8305 rabbitmq-custom
+
+EXPOSE 5672 15672 8305
+
+# CMD ["rabbitmq-server"]
+ENTRYPOINT ["rabbitmq-server"]
