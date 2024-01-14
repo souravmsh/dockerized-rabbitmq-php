@@ -14,6 +14,7 @@ RUN apt update && apt install -y \
         libonig-dev \
         librabbitmq-dev \
         libssh-dev \
+        libssl-dev \
         zip \
         curl \
         unzip \
@@ -25,11 +26,15 @@ RUN apt update && apt install -y \
     && docker-php-ext-install mysqli \
     && docker-php-ext-install soap \
     && docker-php-ext-install zip \ 
-    && docker-php-source delete \
-    && pecl install amqp \
-    && docker-php-ext-enable amqp
+    && docker-php-source delete 
+    
 
-COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+# Install AMQP extension
+RUN pecl install amqp && \
+    echo "extension=amqp.so" > /usr/local/etc/php/conf.d/amqp.ini    
+     
+  
+COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
