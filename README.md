@@ -93,3 +93,14 @@ $mq->queue("queue_name")
         file_put_contents("./temp/log.txt", $str, FILE_APPEND);
     });
 ```
+
+## 5. Browse RabbitMQ Management 
+```
+http://localhost:15672
+```
+or 
+```
+{Containter_IP}:15672
+```
+
+
