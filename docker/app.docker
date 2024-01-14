@@ -34,7 +34,7 @@ RUN pecl install amqp && \
     echo "extension=amqp.so" > /usr/local/etc/php/conf.d/amqp.ini    
      
   
-COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
