@@ -20,7 +20,7 @@ Open the `docker-compose.yml` file and set the desired PHP version and other con
 
 Build the Docker image using the following command:
 ```bash
-docker-compose build
+docker compose build
 ```
 
 ### Run Docker Containers
