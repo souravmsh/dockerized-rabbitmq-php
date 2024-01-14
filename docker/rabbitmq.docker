@@ -1,5 +1,5 @@
 FROM fedora:36
-LABEL maintainer="SSL Wireless"
+LABEL maintainer="RabbitMQService"
 
 
 RUN dnf makecache
