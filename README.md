@@ -26,14 +26,14 @@ docker-compose build
 ### Run Docker Containers
 Start the Docker containers using the following command:
 ```bash 
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Check Container Status
 Check the status of the running containers using the following command:
 
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
 ## 2. Configuration of RabbitmqService.php
